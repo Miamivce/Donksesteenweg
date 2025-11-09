@@ -128,7 +128,7 @@ export function ScenarioManager({ currentInputs, onLoadScenario }: ScenarioManag
       a.download = 'brasschaat-scenarios.json';
       a.click();
       URL.revokeObjectURL(url);
-      showMessage('success', 'Scenario's geëxporteerd');
+      showMessage('success', 'Scenario\'s geëxporteerd');
     } catch (error: any) {
       showMessage('error', error.message);
     }
@@ -173,7 +173,7 @@ export function ScenarioManager({ currentInputs, onLoadScenario }: ScenarioManag
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-sm text-muted-foreground">
-          Bewaar en vergelijk verschillende financiële scenario's. Data wordt lokaal opgeslagen in
+          Bewaar en vergelijk verschillende financiële scenario&apos;s. Data wordt lokaal opgeslagen in
           je browser.
         </p>
 
@@ -220,7 +220,7 @@ export function ScenarioManager({ currentInputs, onLoadScenario }: ScenarioManag
         <div className="space-y-2">
           {scenarios.length === 0 ? (
             <p className="text-sm text-muted-foreground text-center py-8">
-              Geen scenario's opgeslagen. Klik op "Nieuw scenario" om te beginnen.
+              Geen scenario&apos;s opgeslagen. Klik op &quot;Nieuw scenario&quot; om te beginnen.
             </p>
           ) : (
             scenarios.map((scenario) => (

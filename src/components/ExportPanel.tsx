@@ -142,7 +142,7 @@ export function ExportPanel({
               <div className="flex-1">
                 <h3 className="font-semibold">PDF (Presentatie)</h3>
                 <p className="text-xs text-muted-foreground">
-                  Professioneel PDF-rapport (1-3 pagina's). Ideaal om te printen of te presenteren
+                  Professioneel PDF-rapport (1-3 pagina&apos;s). Ideaal om te printen of te presenteren
                   aan bank/familie.
                 </p>
               </div>
