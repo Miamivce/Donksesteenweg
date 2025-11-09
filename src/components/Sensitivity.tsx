@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -51,10 +51,9 @@ export function Sensitivity({ inputs }: SensitivityProps) {
         config,
         inputs.bankTermYears,
         familyMonthly,
-        inputs.netIncomeMonthly,
-        inputs.otherFixedCostsMonthly
+        inputs.netIncomeMonthly
       ),
-    [config, inputs.bankTermYears, familyMonthly, inputs.netIncomeMonthly, inputs.otherFixedCostsMonthly]
+    [config, inputs.bankTermYears, familyMonthly, inputs.netIncomeMonthly]
   );
 
   const amounts = useMemo(() => getAmounts(grid), [grid]);

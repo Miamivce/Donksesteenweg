@@ -1,6 +1,5 @@
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import type { FinancialInputs, Summary, AmortizationRow } from './finance';
 import type { SensitivityCell } from './sensitivity';
 
@@ -220,8 +219,7 @@ export function exportXLSX(
 export async function exportPDF(
   inputs: FinancialInputs,
   summary: Summary,
-  bankAmort: AmortizationRow[],
-  famAmort: AmortizationRow[]
+  bankAmort: AmortizationRow[]
 ): Promise<void> {
   const pdf = new jsPDF('p', 'mm', 'a4');
   const pageWidth = pdf.internal.pageSize.getWidth();

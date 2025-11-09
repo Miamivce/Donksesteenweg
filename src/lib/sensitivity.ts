@@ -38,8 +38,7 @@ export function generateSensitivityGrid(
   config: SensitivityConfig,
   bankTermYears: number,
   familyMonthly: number,
-  netIncomeMonthly: number,
-  otherFixedCostsMonthly: number
+  netIncomeMonthly: number
 ): SensitivityCell[][] {
   const grid: SensitivityCell[][] = [];
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Download, FileJson, FileSpreadsheet, FileText, Loader2 } from 'lucide-react';
@@ -52,7 +52,7 @@ export function ExportPanel({
   const handleExportPDF = async () => {
     setLoading(true);
     try {
-      await exportPDF(inputs, summary, bankAmort, famAmort);
+      await exportPDF(inputs, summary, bankAmort);
     } catch (error) {
       console.error('PDF export failed:', error);
       alert('PDF export mislukt. Probeer het opnieuw.');

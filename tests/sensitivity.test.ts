@@ -20,7 +20,7 @@ describe('Sensitivity Analysis', () => {
 
   describe('generateSensitivityGrid', () => {
     it('should generate correct grid dimensions', () => {
-      const grid = generateSensitivityGrid(config, 25, 1000, 10000, 1500);
+      const grid = generateSensitivityGrid(config, 25, 1000, 10000);
 
       // (700000 - 600000) / 50000 + 1 = 3 amounts
       expect(grid).toHaveLength(3);
@@ -30,7 +30,7 @@ describe('Sensitivity Analysis', () => {
     });
 
     it('should calculate monthly payments', () => {
-      const grid = generateSensitivityGrid(config, 25, 0, 10000, 1500);
+      const grid = generateSensitivityGrid(config, 25, 0, 10000);
 
       // Each cell should have valid monthly payment
       grid.forEach((row) => {
@@ -45,7 +45,7 @@ describe('Sensitivity Analysis', () => {
     });
 
     it('should mark comfortable DTI correctly', () => {
-      const grid = generateSensitivityGrid(config, 25, 1000, 10000, 1500);
+      const grid = generateSensitivityGrid(config, 25, 1000, 10000);
 
       // Check that comfort assessment is based on DTI
       grid.forEach((row) => {
@@ -58,7 +58,7 @@ describe('Sensitivity Analysis', () => {
     });
 
     it('should have higher payments for higher amounts', () => {
-      const grid = generateSensitivityGrid(config, 25, 0, 10000, 1500);
+      const grid = generateSensitivityGrid(config, 25, 0, 10000);
 
       // For same rate, higher amount = higher payment
       const rate = 0; // Use first rate column
@@ -67,7 +67,7 @@ describe('Sensitivity Analysis', () => {
     });
 
     it('should have higher payments for higher rates', () => {
-      const grid = generateSensitivityGrid(config, 25, 0, 10000, 1500);
+      const grid = generateSensitivityGrid(config, 25, 0, 10000);
 
       // For same amount, higher rate = higher payment
       const amount = 0; // Use first amount row
@@ -78,7 +78,7 @@ describe('Sensitivity Analysis', () => {
 
   describe('getAmounts', () => {
     it('should extract amounts from grid', () => {
-      const grid = generateSensitivityGrid(config, 25, 0, 10000, 1500);
+      const grid = generateSensitivityGrid(config, 25, 0, 10000);
       const amounts = getAmounts(grid);
 
       expect(amounts).toEqual([600000, 650000, 700000]);
@@ -87,7 +87,7 @@ describe('Sensitivity Analysis', () => {
 
   describe('getRates', () => {
     it('should extract rates from grid', () => {
-      const grid = generateSensitivityGrid(config, 25, 0, 10000, 1500);
+      const grid = generateSensitivityGrid(config, 25, 0, 10000);
       const rates = getRates(grid);
 
       expect(rates).toEqual([3.0, 3.5, 4.0]);
@@ -96,7 +96,7 @@ describe('Sensitivity Analysis', () => {
 
   describe('getMonthlyRange', () => {
     it('should find min and max monthly payments', () => {
-      const grid = generateSensitivityGrid(config, 25, 0, 10000, 1500);
+      const grid = generateSensitivityGrid(config, 25, 0, 10000);
       const { min, max } = getMonthlyRange(grid);
 
       expect(min).toBeLessThan(max);

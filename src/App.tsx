@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
 import { Button } from './components/ui/button';
 import { RefreshCw } from 'lucide-react';
@@ -62,10 +62,9 @@ function App() {
         DEFAULT_SENSITIVITY_CONFIG,
         inputs.bankTermYears,
         summary.familyMonthly,
-        inputs.netIncomeMonthly,
-        inputs.otherFixedCostsMonthly
+        inputs.netIncomeMonthly
       ),
-    [inputs.bankTermYears, summary.familyMonthly, inputs.netIncomeMonthly, inputs.otherFixedCostsMonthly]
+    [inputs.bankTermYears, summary.familyMonthly, inputs.netIncomeMonthly]
   );
 
   const amounts = useMemo(() => getAmounts(sensitivityGrid), [sensitivityGrid]);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import type { FinancialInputs, Summary } from '../lib/finance';
 import { formatNumber } from '../lib/export';

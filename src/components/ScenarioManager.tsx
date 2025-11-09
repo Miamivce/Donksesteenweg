@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Label } from './ui/label';
 import {
   Plus,
   Copy,
@@ -18,7 +17,6 @@ import type { FinancialInputs } from '../lib/finance';
 import {
   loadScenarios,
   createScenario,
-  updateScenario,
   deleteScenario,
   duplicateScenario,
   renameScenario,
