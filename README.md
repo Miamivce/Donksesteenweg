@@ -48,6 +48,40 @@ De gebouwde bestanden staan in de `dist/` map. Je kunt deze uploaden naar een we
 npm run preview
 ```
 
+## 🚢 Deployment op Vercel
+
+### Optie 1: Via Vercel Dashboard (Aanbevolen)
+
+1. Ga naar [vercel.com](https://vercel.com) en log in
+2. Klik op "Add New Project"
+3. Importeer de GitHub repository: `Miamivce/Donksesteenweg`
+4. Vercel detecteert automatisch Vite
+5. Klik "Deploy" - klaar!
+
+**Build instellingen (automatisch gedetecteerd):**
+- Framework: Vite
+- Build Command: `npm run build`
+- Output Directory: `dist`
+- Install Command: `npm install`
+- Node Version: 18.x
+
+### Optie 2: Via Vercel CLI
+
+```bash
+# Installeer Vercel CLI
+npm i -g vercel
+
+# Deploy
+cd brasschaat-villa-planner
+vercel
+```
+
+### Na deployment:
+
+- App is live op: `https://donksesteenweg.vercel.app` (of custom domain)
+- Automatische deploys bij elke push naar main branch
+- Preview deployments voor pull requests
+
 ## 🧪 Tests uitvoeren
 
 ```bash
