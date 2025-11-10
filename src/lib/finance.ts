@@ -168,9 +168,25 @@ export function getAmortTotals(rows: AmortizationRow[]) {
 }
 
 /**
+ * Calculate bank loan amount automatically based on project costs and other sources
+ * Bank Loan = Total Project - Own Cash - Crypto - Family Loan
+ */
+export function calculateBankLoanAmount(inputs: FinancialInputs): number {
+  const regTax = inputs.purchasePrice * (inputs.registrationRatePct / 100);
+  const renoWithCont = inputs.renovationBudget * (1 + inputs.contingencyPct / 100);
+  const totalProject = inputs.purchasePrice + regTax + inputs.notaryFees + renoWithCont;
+
+  const otherSources = inputs.ownCash + inputs.cryptoNet + inputs.familyLoanAmount;
+  const bankLoan = totalProject - otherSources;
+
+  // Bank loan cannot be negative
+  return Math.max(0, round2(bankLoan));
+}
+
+/**
  * Default inputs matching the spec
  */
-export const DEFAULT_INPUTS: FinancialInputs = {
+const DEFAULT_INPUTS_BASE = {
   purchasePrice: 700000,
   registrationRatePct: 2,
   notaryFees: 5000,
@@ -181,7 +197,7 @@ export const DEFAULT_INPUTS: FinancialInputs = {
   familyLoanAmount: 200000,
   familyLoanRatePct: 1.5,
   familyLoanTermYears: 15,
-  bankLoanAmount: 850000,
+  bankLoanAmount: 0, // Will be calculated
   bankRatePct: 4,
   bankTermYears: 25,
   airbnbIncome: 800,
@@ -191,4 +207,10 @@ export const DEFAULT_INPUTS: FinancialInputs = {
   otherFixedCostsMonthly: 1500,
   projectName: "Brasschaat Villa Plan",
   reportNotes: "",
+};
+
+// Calculate bank loan amount automatically
+export const DEFAULT_INPUTS: FinancialInputs = {
+  ...DEFAULT_INPUTS_BASE,
+  bankLoanAmount: calculateBankLoanAmount(DEFAULT_INPUTS_BASE as FinancialInputs),
 };

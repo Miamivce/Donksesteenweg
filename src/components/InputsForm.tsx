@@ -175,15 +175,23 @@ export function InputsForm({ inputs, onUpdate }: InputsFormProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="bankLoanAmount">Banklening - bedrag (€)</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="bankLoanAmount">Banklening - bedrag (€)</Label>
+                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-semibold">
+                  Auto-berekend
+                </span>
+              </div>
               <Input
                 id="bankLoanAmount"
                 type="text"
                 inputMode="decimal"
                 value={inputs.bankLoanAmount}
-                onChange={(e) => handleNumberInput('bankLoanAmount', e.target.value)}
-                className="text-right"
+                disabled
+                className="text-right bg-gray-100 cursor-not-allowed"
               />
+              <p className="text-xs text-muted-foreground">
+                Automatisch berekend op basis van projectkosten minus andere financiering
+              </p>
             </div>
 
             <div className="space-y-2">
