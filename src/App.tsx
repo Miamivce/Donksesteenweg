@@ -8,6 +8,7 @@ import { AmortTable } from './components/AmortTable';
 import { Sensitivity } from './components/Sensitivity';
 import { ScenarioManager } from './components/ScenarioManager';
 import { ExportPanel } from './components/ExportPanel';
+import { AdvisorPanel } from './components/AdvisorPanel';
 import {
   DEFAULT_INPUTS,
   calculateSummary,
@@ -94,13 +95,14 @@ function App() {
 
         {/* Main Content */}
         <Tabs defaultValue="summary" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-7 mb-6 print:hidden">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-8 mb-6 print:hidden">
             <TabsTrigger value="inputs">Inputs</TabsTrigger>
             <TabsTrigger value="summary">Overzicht</TabsTrigger>
+            <TabsTrigger value="ai-advies">AI-Advies</TabsTrigger>
             <TabsTrigger value="amort-bank">Bank</TabsTrigger>
             <TabsTrigger value="amort-fam">Familie</TabsTrigger>
             <TabsTrigger value="sensitivity">Gevoeligheid</TabsTrigger>
-            <TabsTrigger value="scenarios">Scenario's</TabsTrigger>
+            <TabsTrigger value="scenarios">Scenario&apos;s</TabsTrigger>
             <TabsTrigger value="export">Export</TabsTrigger>
           </TabsList>
 
@@ -112,6 +114,11 @@ function App() {
           {/* Summary Tab */}
           <TabsContent value="summary" className="space-y-6">
             <SummaryCards inputs={inputs} summary={summary} />
+          </TabsContent>
+
+          {/* AI Advisor Tab */}
+          <TabsContent value="ai-advies" className="space-y-6">
+            <AdvisorPanel inputs={inputs} summary={summary} />
           </TabsContent>
 
           {/* Bank Amortization Tab */}
