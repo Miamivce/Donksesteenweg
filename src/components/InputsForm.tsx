@@ -3,15 +3,18 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
 import { Switch } from './ui/switch';
+import { Button } from './ui/button';
+import { Calculator } from 'lucide-react';
 import type { FinancialInputs } from '../lib/finance';
 import { toNumber } from '../lib/finance';
 
 interface InputsFormProps {
   inputs: FinancialInputs;
   onUpdate: (key: keyof FinancialInputs, value: string | number | boolean) => void;
+  onCalculateBankLoan: () => void;
 }
 
-export function InputsForm({ inputs, onUpdate }: InputsFormProps) {
+export function InputsForm({ inputs, onUpdate, onCalculateBankLoan }: InputsFormProps) {
   const handleNumberInput = (key: keyof FinancialInputs, value: string) => {
     const num = toNumber(value, 0);
     onUpdate(key, Math.max(0, num)); // Clamp to non-negative
@@ -175,22 +178,29 @@ export function InputsForm({ inputs, onUpdate }: InputsFormProps) {
             </div>
 
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="bankLoanAmount">Banklening - bedrag (€)</Label>
-                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-semibold">
-                  Auto-berekend
-                </span>
+              <Label htmlFor="bankLoanAmount">Banklening - bedrag (€)</Label>
+              <div className="flex gap-2">
+                <Input
+                  id="bankLoanAmount"
+                  type="text"
+                  inputMode="decimal"
+                  value={inputs.bankLoanAmount}
+                  onChange={(e) => handleNumberInput('bankLoanAmount', e.target.value)}
+                  className="text-right flex-1"
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={onCalculateBankLoan}
+                  title="Bereken gesuggereerd bedrag op basis van projectkosten minus andere financiering"
+                >
+                  <Calculator className="h-4 w-4" />
+                </Button>
               </div>
-              <Input
-                id="bankLoanAmount"
-                type="text"
-                inputMode="decimal"
-                value={inputs.bankLoanAmount}
-                disabled
-                className="text-right bg-gray-100 cursor-not-allowed"
-              />
               <p className="text-xs text-muted-foreground">
-                Automatisch berekend op basis van projectkosten minus andere financiering
+                💡 Klik op <Calculator className="h-3 w-3 inline" /> om het gesuggereerde bedrag te
+                berekenen (totale projectkosten minus andere financiering)
               </p>
             </div>
 

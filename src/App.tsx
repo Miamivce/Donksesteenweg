@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
 import { Button } from './components/ui/button';
 import { RefreshCw } from 'lucide-react';
@@ -26,26 +26,14 @@ import {
 function App() {
   const [inputs, setInputs] = useState<FinancialInputs>(DEFAULT_INPUTS);
 
-  // Auto-calculate bank loan amount whenever relevant inputs change
-  useEffect(() => {
-    const newBankLoanAmount = calculateBankLoanAmount(inputs);
-    // Only update if different to avoid infinite loops
-    if (newBankLoanAmount !== inputs.bankLoanAmount) {
-      setInputs((prev) => ({ ...prev, bankLoanAmount: newBankLoanAmount }));
-    }
-  }, [
-    inputs.purchasePrice,
-    inputs.registrationRatePct,
-    inputs.notaryFees,
-    inputs.renovationBudget,
-    inputs.contingencyPct,
-    inputs.ownCash,
-    inputs.cryptoNet,
-    inputs.familyLoanAmount,
-  ]);
-
   const handleUpdate = (key: keyof FinancialInputs, value: string | number | boolean) => {
     setInputs((prev) => ({ ...prev, [key]: value }));
+  };
+
+  // Calculate suggested bank loan amount (user can choose to apply this)
+  const handleCalculateBankLoan = () => {
+    const suggested = calculateBankLoanAmount(inputs);
+    setInputs((prev) => ({ ...prev, bankLoanAmount: suggested }));
   };
 
   const handleReset = () => {
@@ -127,7 +115,11 @@ function App() {
 
           {/* Inputs Tab */}
           <TabsContent value="inputs" className="space-y-6">
-            <InputsForm inputs={inputs} onUpdate={handleUpdate} />
+            <InputsForm
+              inputs={inputs}
+              onUpdate={handleUpdate}
+              onCalculateBankLoan={handleCalculateBankLoan}
+            />
           </TabsContent>
 
           {/* Summary Tab */}
