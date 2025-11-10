@@ -184,28 +184,28 @@ export function calculateBankLoanAmount(inputs: FinancialInputs): number {
 }
 
 /**
- * Default inputs matching the spec
+ * Default inputs matching the realistic 2027 scenario
  */
 const DEFAULT_INPUTS_BASE = {
-  purchasePrice: 700000,
+  purchasePrice: 850000,
   registrationRatePct: 2,
-  notaryFees: 5000,
-  renovationBudget: 450000,
-  contingencyPct: 12,
-  ownCash: 30000,
-  cryptoNet: 0,
-  familyLoanAmount: 200000,
-  familyLoanRatePct: 1.5,
-  familyLoanTermYears: 15,
-  bankLoanAmount: 0, // Will be calculated
-  bankRatePct: 4,
-  bankTermYears: 25,
+  notaryFees: 23000,
+  renovationBudget: 600000,
+  contingencyPct: 2,
+  ownCash: 100000,
+  cryptoNet: 0, // €100k available but not used in base scenario
+  familyLoanAmount: 250000, // Inheritance advance, no repayment
+  familyLoanRatePct: 0,
+  familyLoanTermYears: 0, // No repayment (voorschot op erfenis)
+  bankLoanAmount: 0, // Will be calculated (≈€1,152,000)
+  bankRatePct: 3.2,
+  bankTermYears: 30,
   airbnbIncome: 800,
   useAirbnbIncome: true,
   businessUsePct: 15,
-  netIncomeMonthly: 10500,
-  otherFixedCostsMonthly: 1500,
-  projectName: "Brasschaat Villa Plan",
+  netIncomeMonthly: 8300,
+  otherFixedCostsMonthly: 2750,
+  projectName: "Brasschaat Villa – Realistisch Scenario 2027",
   reportNotes: "",
 };
 
